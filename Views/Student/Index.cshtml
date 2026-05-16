@@ -1,0 +1,60 @@
+@model IEnumerable<CognizantSimpleApp.Models.Student>
+
+<h1 style="color:darkblue;">Smart Student Manager</h1>
+
+<p>
+    <a href="/Student/Create"
+       style="padding:10px;
+              background-color:green;
+              color:white;
+              text-decoration:none;
+              border-radius:5px;">
+        Add Student
+    </a>
+</p>
+
+<table border="1"
+       cellpadding="10"
+       style="border-collapse:collapse;
+              width:80%;
+              text-align:center;">
+
+    <tr style="background-color:lightgray;">
+        <th>Registration Number</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+
+            <td>@item.Name</td>
+
+            <td>@item.Department</td>
+
+            <td>
+
+                <a href="/Student/Edit/@item.Id"
+                   style="color:blue;
+                          text-decoration:none;"
+                   onclick="return confirm('Do you want to edit this student details?');">
+                    Edit
+                </a>
+
+                |
+
+                <a href="/Student/Delete/@item.Id"
+                   style="color:red;
+                          text-decoration:none;"
+                   onclick="return confirm('Do you want to delete this student?');">
+                    Delete
+                </a>
+
+            </td>
+        </tr>
+    }
+
+</table>

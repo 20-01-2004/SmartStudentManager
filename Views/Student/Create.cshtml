@@ -1,0 +1,93 @@
+@model CognizantSimpleApp.Models.Student
+
+<h1 style="color:darkblue;">Add Student</h1>
+
+<form method="post" onsubmit="return validateForm()">
+
+    <label>Registration Number</label><br />
+
+    <input type="text"
+           id="studentId"
+           name="Id"
+           required
+           style="width:250px; padding:8px;"
+           onblur="checkDuplicateId()" />
+
+    <br /><br />
+
+    <label>Name</label><br />
+
+    <input type="text"
+           name="Name"
+           required
+           style="width:250px; padding:8px;" />
+
+    <br /><br />
+
+    <label>Department</label><br />
+
+    <input type="text"
+           name="Department"
+           required
+           style="width:250px; padding:8px;" />
+
+    <br /><br />
+
+    <button type="submit"
+            style="padding:10px;
+                   background-color:green;
+                   color:white;
+                   border:none;
+                   border-radius:5px;">
+        Save Student
+    </button>
+
+    <a href="/Student"
+       style="margin-left:15px;
+              text-decoration:none;
+              color:blue;">
+        Back
+    </a>
+
+</form>
+
+<script>
+
+    // Existing student IDs
+    var existingIds = [
+        @foreach (var student in ViewBag.Students as List<CognizantSimpleApp.Models.Student> ?? new List<CognizantSimpleApp.Models.Student>())
+        {
+            <text>"@student.Id",</text>
+        }
+    ];
+
+    function checkDuplicateId() {
+
+        var enteredId = document.getElementById("studentId").value;
+
+        if (existingIds.includes(enteredId)) {
+
+            alert("Student ID already exists! Please enter a unique Registration Number.");
+
+            document.getElementById("studentId").value = "";
+
+            document.getElementById("studentId").focus();
+
+        }
+    }
+
+    function validateForm() {
+
+        var enteredId = document.getElementById("studentId").value;
+
+        if (existingIds.includes(enteredId)) {
+
+            alert("Duplicate ID not allowed!");
+
+            return false;
+        }
+
+        return true;
+    }
+
+</script>

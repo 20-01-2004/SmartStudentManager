@@ -1,0 +1,29 @@
+@model CognizantSimpleApp.Models.Student
+
+<h1>Edit Student</h1>
+
+<form method="post">
+
+    <label>Registration Number</label><br />
+    <input type="text" name="Id" value="@Model.Id" readonly />
+    <br /><br />
+
+    <label>Name</label><br />
+    <input type="text" name="Name" value="@Model.Name" />
+    <br /><br />
+
+    <label>Department</label><br />
+    <input type="text" name="Department" value="@Model.Department" />
+    <br /><br />
+
+    <button type="submit"
+            style="padding:10px;
+                   background-color:blue;
+                   color:white;
+                   border:none;
+                   border-radius:5px;"
+            onclick="return confirm('Do you want to update this student details?');">
+        Update
+    </button>
+
+</form>
